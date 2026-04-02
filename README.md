@@ -41,4 +41,14 @@ docker build -t mrm-frontend:v1 .
 docker images | grep mrm
 ```
 
+Применяем манифесты в кластер
+```bash
+kubectl apply -f k8s/backend.yaml
+kubectl apply -f k8s/frontend.yaml
+```
+
+Проверяем статус запуска kubernetes
+```bash
+kubectl get pods -n mrm-project
+```
 
