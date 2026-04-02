@@ -126,5 +126,18 @@ istioctl dashboard kiali
 kubectl apply -f k8s/hpa.yaml
 ```
 
+## Jeager 
+Установка
+```bash
+kubectl apply -f https://raw.githubusercontent.com/istio/istio/release-1.29/samples/addons/jaeger.yaml
+``` 
+Просмотр
+```bash
+while true; do curl -s http://192.168.49.2:30711; sleep 0.1; done
+
+
+istioctl dashboard jaeger
+```
+
 
 
