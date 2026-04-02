@@ -19,3 +19,26 @@ cd istio-1.29.1
 export PATH=$PWD/bin:$PATH
 ```
 
+# Собираем образы Minicube
+Переключить терминал внутрь Minicube
+```bash
+# Переключаем терминал на Docker внутри Minikube
+eval $(minikube docker-env)
+```
+```bash
+# Собираем бэкенд
+cd services/backend
+docker build -t mrm-backend:v1 .
+```
+```bash
+# Собираем фронтенд
+cd services/frontend
+docker build -t mrm-frontend:v1 .
+```
+
+Проверить что контейнеры улетели в Minicube
+```bash
+docker images | grep mrm
+```
+
+
