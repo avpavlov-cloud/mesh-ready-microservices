@@ -79,6 +79,39 @@ http://192.168.49.2:30711
 Frontend received: Response from Backend (v1)
 ```
 
+## Canary Deployment
+Сборка новой версии бэкенда
+```bash
+eval $(minikube docker-env)
+docker build -t mrm-backend:v2 ./services/backend
+```
+
+Применить конфигурацию разделения на разные версии
+```bash
+kubectl apply -f istio-configs/backend-split.yaml
+```
+Тестирование нового деплоймента
+```bash
+while true; do curl -s http://192.168.49.2:30711 | grep "Response"; sleep 0.5; done
+```
+```
+while true; do curl -s http://192.168.49.2:30711 | grep "Response"; sleep 0.5; done
+Frontend received: Response from Backend (v1)
+Frontend received: Response from Backend (v1)
+Frontend received: Response from Backend (v2)
+Frontend received: Response from Backend (v1)
+Frontend received: Response from Backend (v1)
+Frontend received: Response from Backend (v1)
+Frontend received: Response from Backend (v2)
+Frontend received: Response from Backend (v1)
+Frontend received: Response from Backend (v1)
+Frontend received: Response from Backend (v2)
+Frontend received: Response from Backend (v1)
+Frontend received: Response from Backend (v1)
+Frontend received: Response from Backend (v1)
+Frontend received: Response from Backend (v1
+```
+
 
 
 

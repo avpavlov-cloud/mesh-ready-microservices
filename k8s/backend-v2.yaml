@@ -1,0 +1,26 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: backend-v2
+  namespace: mrm-project
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: backend
+      version: v2
+  template:
+    metadata:
+      labels:
+        app: backend
+        version: v2
+    spec:
+      containers:
+      - name: backend
+        image: mrm-backend:v2
+        imagePullPolicy: Never
+        env:
+        - name: VERSION
+          value: "v2" # Теперь сервис будет отвечать "v2"
+        ports:
+        - containerPort: 8080
