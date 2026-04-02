@@ -61,5 +61,25 @@ kubectl get pods -n mrm-project
  Frontend received: Response from Backend (v1)
  ```
 
+ ## Конфигурации шлюза Istio
+```bash
+kubectl apply -f istio-configs/gateway.yaml
+kubectl apply -f istio-configs/frontend-vs.yaml
+```
+Получить список адресов для доступа к шлюзу
+```bash
+minikube service istio-ingressgateway -n istio-system --url
+```
+Рабочий шлюз Istio
+```bash
+http://192.168.49.2:30711
+```
+Такой же ответ
+```
+Frontend received: Response from Backend (v1)
+```
+
+
+
 
 

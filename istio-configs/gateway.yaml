@@ -1,0 +1,15 @@
+apiVersion: networking.istio.io/v1alpha3
+kind: Gateway
+metadata:
+  name: mrm-gateway
+  namespace: mrm-project
+spec:
+  selector:
+    istio: ingressgateway # Используем стандартный контроллер Istio
+  servers:
+  - port:
+      number: 80
+      name: http
+      protocol: HTTP
+    hosts:
+    - "*" # Разрешаем запросы с любых хостов (для тестов)

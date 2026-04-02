@@ -1,0 +1,16 @@
+apiVersion: networking.istio.io/v1alpha3
+kind: VirtualService
+metadata:
+  name: frontend-vs
+  namespace: mrm-project
+spec:
+  hosts:
+  - "*"
+  gateways:
+  - mrm-gateway # Привязываем к нашему шлюзу
+  http:
+  - route:
+    - destination:
+        host: frontend-service # Отправляем трафик на фронтенд
+        port:
+          number: 8081
