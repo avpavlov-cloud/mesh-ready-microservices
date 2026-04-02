@@ -47,8 +47,19 @@ kubectl apply -f k8s/backend.yaml
 kubectl apply -f k8s/frontend.yaml
 ```
 
-Проверяем статус запуска kubernetes
+Посмотреть мои поды из моего пространства имён
 ```bash
 kubectl get pods -n mrm-project
 ```
+
+## Проверить что frontend видит backend
+```bash
+ kubectl port-forward svc/frontend-service 8081:8081 -n mrm-project
+ ```
+ Открываем ``http://localhost:8081/`` и видим 
+ ```
+ Frontend received: Response from Backend (v1)
+ ```
+
+
 
