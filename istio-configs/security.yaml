@@ -1,0 +1,8 @@
+apiVersion: security.istio.io/v1beta1
+kind: PeerAuthentication
+metadata:
+  name: default-strict
+  namespace: mrm-project
+spec:
+  mtls:
+    mode: STRICT # Только зашифрованный трафик
