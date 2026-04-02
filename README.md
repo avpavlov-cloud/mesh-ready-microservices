@@ -112,7 +112,19 @@ Frontend received: Response from Backend (v1)
 Frontend received: Response from Backend (v1
 ```
 
+## Устанавливаем аддоны kiali
+```bash
+kubectl apply -f https://raw.githubusercontent.com/istio/istio/release-1.29/samples/addons/kiali.yaml
+```
+Просматриваем kiali
+```bash
+istioctl dashboard kiali
+```
 
+## Ограничение скорости Rate Limit
+```bash
+kubectl apply -f k8s/hpa.yaml
+```
 
 
 
