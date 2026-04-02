@@ -5,6 +5,15 @@ metadata:
   namespace: mrm-project
 spec:
   host: backend-service
+  # Настройки устойчивости для всего сервиса (Circuit Breaker)
+  trafficPolicy:
+    connectionPool:
+      tcp:
+        maxConnections: 100
+    outlierDetection:
+      consecutive5xxErrors: 3
+      interval: 10s
+      baseEjectionTime: 30s
   subsets:
   - name: v1
     labels:
@@ -31,3 +40,8 @@ spec:
         host: backend-service
         subset: v2
       weight: 20
+    # Настройки автоматических повторов (Retries)
+    retries:
+      attempts: 3
+      perTryTimeout: 2s
+      retryOn: 5xx,connect-failure
